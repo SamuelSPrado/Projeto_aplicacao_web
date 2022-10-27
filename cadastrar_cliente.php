@@ -4,7 +4,6 @@ function limpar_texto($str){
     return preg_replace("/[^0-9]/", "", $str);
 }
 
-
 if(count($_POST)> 0){
 
     include('conexao.php');
@@ -50,7 +49,6 @@ if(count($_POST)> 0){
             unset($_POST);
         }
     } 
-
 }
 ?>
 
@@ -85,8 +83,6 @@ if(count($_POST)> 0){
             <button type="submit">Concluir Cadastro</button>
         </p>
     </form>
-    
-
     
 </body>
 </html>
