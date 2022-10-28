@@ -83,6 +83,6 @@ if(count($_POST)> 0){
             <button type="submit">Concluir Cadastro</button>
         </p>
     </form>
-    
+    <p><a href="clientes.php">Clique aqui</a> para ir para a lista de clientes</p>
 </body>
 </html>
