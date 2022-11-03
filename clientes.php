@@ -1,5 +1,5 @@
 <?php
-    include('conexao.php');
+    include('lib/conexao.php');
 
     $sql_clientes = "SELECT * FROM clientes";
     $query_clientes = $mysqli->query($sql_clientes) or die($mysqli->error);
@@ -14,11 +14,11 @@
     <title>Lista de Clientes</title>
 </head>
 <body>
-    <h1>Lista de Clientes</h1>
-    <p>Estes são os clientes cadastrados no seu sistema: </p>
+    <h1>Lista de Clientes / <a href="cadastrar_cliente.php">Cadastrar Clientes</a></h1>
     <table border="1" cellpadding="10"> 
         <thead>
             <th>ID do cliente</th>
+            <th>Imagem</th>
             <th>Nome</th>
             <th>Telefone</th>
             <th>E-mail</th>
@@ -51,6 +51,7 @@
             ?>
                     <tr>
                         <td><?php echo $cliente['id'];?></td>
+                        <td><img height="40" src="<?php echo $cliente['foto'];?>" alt=""></td>
                         <td><?php echo $cliente['nome'];?></td>
                         <td><?php echo $cliente['email'];?></td>
                         <td><?php echo $telefone;?></td>

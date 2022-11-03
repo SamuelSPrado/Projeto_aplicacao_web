@@ -6,17 +6,27 @@ function limpar_texto($str){
 
 if(count($_POST)> 0){
 
-    include('conexao.php');
+    include('lib/conexao.php');
+    include("lib/upload.php");
+    include('lib/mail.php');
 
     $erro = false;
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $telefone = $_POST['telefone'];
     $data_nascimento = $_POST['data_nascimento'];
+    $senha_primaria = $_POST['senha'];
+
+    if(strlen($senha_primaria) < 6 && strlen($senha_primaria) > 16){
+        $erro = "A senha de conter entre 6 e 16 caracteres";
+    }
+
+    $senha_primaria = $_POST['senha']; //Antes de criptografar
 
     if(empty($nome)){
         $erro = "ERRO: O campo Nome é obrigatório!";
     }
+    
     if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
         $erro = "ERRO: O campo E-mail é obrigatório!";
     }
@@ -38,17 +48,34 @@ if(count($_POST)> 0){
         }
     }
 
+    $path = "";
+    if(isset($_FILES['foto'])){
+        $arq = $_FILES['foto'];
+        $sucesso = enviarArquivo($arq['error'], $arq['size'], $arq['name'], $arq['tmp_name']);
+        if($sucesso == false)
+            $path = "Falha ao enviar arquivo";
+    }
+
     if($erro){
         echo "<p><b>ERRO: $erro</b></p>";
     } else {
-        $sql_code = "INSERT INTO clientes (nome, email, telefone, data_nascimento, data) 
-        VALUES ('$nome', '$email', '$telefone', '$data_nascimento', NOW())";
+        $senha = password_hash($senha_primaria, PASSWORD_DEFAULT); //Recebe a senha criptografada.
+        $sql_code = "INSERT INTO clientes (nome, email, senha, telefone, data_nascimento, data, foto) 
+        VALUES ('$nome', '$email', '$senha', '$telefone', '$data_nascimento', NOW(), '$path')";
         $sucesso = $mysqli->query($sql_code) or die($mysqli->error);
         if($sucesso){
+            //enviar_email(
+                //$email, 'Assunto', 
+                //"<h1>Conta criada!</h1>
+                //<p>
+                    //<b>Login: </b> $email <br>
+                    //<b>Senha: </b> $senha_primaria
+                //</p>
+            //");
             echo "<p><b>Cliente cadastrado com sucesso!</b></p>";
             unset($_POST);
         }
-    } 
+    }
 }
 ?>
 
@@ -62,7 +89,7 @@ if(count($_POST)> 0){
 </head>
 <body>
     <a href="clientes.php">Voltar para a lista</a>
-    <form method="POST" action="">
+    <form enctype="multipart/form-data" method="POST" action="">
         <p>
             <label for="">Nome:</label>
             <input value="<?php if(isset($_POST['nome'])) echo $_POST['nome'];?>" name="nome" type="text"><br>
@@ -78,6 +105,14 @@ if(count($_POST)> 0){
         <p>
             <label for="">Data de Nascimento:</label>
             <input value="<?php if(isset($_POST['data_nascimento'])) echo $_POST['data_nascimento'];?>" name="data_nascimento" type="text"><br>
+        </p>
+        <p>
+            <label for="">Senha:</label>
+            <input value="<?php if(isset($_POST['senha'])) echo $_POST['senha'];?>" name="senha" type="password"><br>
+        </p>
+        <p>
+            <label for="">Imagem de perfil:</label>
+            <input name="foto" type="file"><br>
         </p>
         <p>
             <button type="submit">Concluir Cadastro</button>

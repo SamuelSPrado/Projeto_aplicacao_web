@@ -1,6 +1,6 @@
 <?php
 if(isset($_POST['confirmar'])){
-    include("conexao.php");
+    include("lib/conexao.php");
     $id = intval($_GET['id']);
     $sql_code = "DELETE FROM clientes WHERE id = '$id'";
     $sql_query = $mysqli->query($sql_code) or die($mysqli->error);
@@ -16,7 +16,7 @@ if(isset($_POST['confirmar'])){
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

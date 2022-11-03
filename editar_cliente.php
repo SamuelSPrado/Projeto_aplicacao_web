@@ -1,6 +1,7 @@
 <?php
 
-include('conexao.php');
+include('lib/conexao.php');
+
 $id = intval($_GET['id']);
 function limpar_texto($str){
     return preg_replace("/[^0-9]/", "", $str);
@@ -13,10 +14,22 @@ if(count($_POST)> 0){
     $email = $_POST['email'];
     $telefone = $_POST['telefone'];
     $data_nascimento = $_POST['data_nascimento'];
-
+    $senha = $_POST['senha'];
+    $sql_code_extra = "";
+            
+    if(!empty($senha)) {
+        if(strlen($senha) < 6 && strlen($senha) > 16){
+            $erro = "A senha de conter entre 6 e 16 caracteres";
+        } else {
+            $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
+            $sql_code_extra = "senha = '$senhaCriptografada',";
+        }
+    }
+        
     if(empty($nome)){
         $erro = "ERRO: O campo Nome é obrigatório!";
     }
+
     if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
         $erro = "ERRO: O campo E-mail é obrigatório!";
     }
@@ -40,10 +53,13 @@ if(count($_POST)> 0){
 
     if($erro){
         echo "<p><b>ERRO: $erro</b></p>";
-    } else {
+    } 
+    else{
+
         $sql_code = "UPDATE clientes SET 
         nome = '$nome', 
-        email = '$email', 
+        email = '$email',
+        $sql_code_extra
         telefone = '$telefone', 
         data_nascimento = '$data_nascimento'
         WHERE id = '$id'";
@@ -55,12 +71,9 @@ if(count($_POST)> 0){
         }
     }
 }
-
-
 $sql_cliente = "SELECT * FROM clientes WHERE id = '$id'";
 $query_cliente = $mysqli->query($sql_cliente) or die($mysqli->error);
 $cliente = $query_cliente->fetch_assoc();
-
 ?>
 
 <!DOCTYPE html>
@@ -69,10 +82,10 @@ $cliente = $query_cliente->fetch_assoc();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Clientes</title>
+    <title>Editar Clientes</title>
 </head>
 <body>
-    <a href="clientes.php">Voltar para a lista</a>
+    <a href="clientes.php">Voltar para a lista de clientes</a>
     <form method="POST" action="">
         <p>
             <label for="">Nome:</label>
@@ -81,6 +94,10 @@ $cliente = $query_cliente->fetch_assoc();
         <p>
             <label for="">E-mail:</label>
             <input value="<?php echo $cliente['email'];?>" name="email" type="text"><br>
+        </p>
+        <p>
+            <label for="">Senha:</label>
+            <input value="" name="senha" type="text"><br>
         </p>
         <p>
             <label for="">Telefone:</label>
