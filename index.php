@@ -1,26 +1,60 @@
+<?php
+
+if(isset($_POST['email']) && isset($_POST['senha']))
+{
+
+    include('lib/conexao.php');
+
+    $email = $mysqli->escape_string($_POST['email']);
+    $senha = $_POST['senha'];
+
+    $sql_code = "SELECT * FROM clientes WHERE email = '$email'";
+    $sql_query = $mysqli->query($sql_code) or die($mysqli->error);
+
+    if($sql_query->num_rows == 0)
+    {
+        echo "E-mail inválido!";
+    } 
+    else 
+    {
+        $usuario = $sql_query->fetch_assoc();
+        if(!password_verify($senha, $usuario['senha']))
+        {
+            echo "Senha incorreta!";
+        }
+        else
+        {
+            if(!isset($_SESSION))
+                session_start();
+
+            $_SESSION['usuario'] = $usuario['id'];
+            $_SESSION['admin'] = $usuario['admin'];
+            header("Location: clientes.php");
+        }
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela de Login</title>
-    <link rel="stylesheet" href="estilo.css">
+    <title>Entrar</title>
 </head>
 <body>
-    <header>
-
-    </header>
-    <main>
-    <form action="">
-        <h1>Entre</h1>
-        <input name="" value="" type="text"> E-mail
-        <input name="" value="" type="text"> Senha
-        <button>Entrar</button>
+    <h1>Entrar</h1>
+    <form action="" method="POST">
+        <p>
+            <label for="">E-mail</label>
+            <input type="text" name="email">
+        </p>
+        <p>
+            <label for="">Senha</label>
+            <input type="password" name="senha">
+        </p>
+        <button type="submit">Entrar</button>
     </form>
-    </main>
-    <footer>
-
-    </footer>
 </body>
 </html>

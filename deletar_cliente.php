@@ -1,16 +1,37 @@
 <?php
-if(isset($_POST['confirmar'])){
+
+if(!isset($_SESSION))
+    session_start();
+
+if(!isset($_SESSION['usuario']) || !$_SESSION['admin'])
+{
+    header("Location: index.php");
+    die();
+}
+
+if(isset($_POST['confirmar']))
+{
+
     include("lib/conexao.php");
     $id = intval($_GET['id']);
+
+    $sql_cliente = "SELECT foto FROM clientes WHERE id = '$id'";
+    $query_cliente = $mysqli->query($sql_cliente) or die($mysqli->error);
+    $cliente = $query_cliente->fetch_assoc();
+
     $sql_code = "DELETE FROM clientes WHERE id = '$id'";
     $sql_query = $mysqli->query($sql_code) or die($mysqli->error);
 
     if($sql_query) {
-    ?>    
+
+        if(!empty($cliente['foto']))
+            unlink($cliente['foto']);
+
+        ?>    
         <h1>Cliente deletado com sucesso!</h1>
         <p><a href="clientes.php">Clique aqui</a> para voltar para a lista de clientes.</p>
-    <?php
-    die(); 
+        <?php
+        die(); 
     }
 }
 
