@@ -59,12 +59,14 @@ input::placeholder{
 
 .botao:hover{
     background-color: rgb(39, 181, 216);
+    transform: scale(1.2);
+    transition: all 0.5s;
 }
 
 .erro{
     margin-top: 20px;
     color: red;
-    background-color: white;
-    font-size: 20px;
+    text-shadow: 5px white;
+    font-size: 40px;
     text-align: center;
 }

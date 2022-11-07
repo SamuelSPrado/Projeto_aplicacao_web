@@ -30,19 +30,19 @@ if(count($_POST)> 0)
 
     if(strlen($senha_primaria) < 6 && strlen($senha_primaria) > 16)
     {
-        $erro = "A senha de conter entre 6 e 16 caracteres";
+        $erro = "<p class='msg_fail'>A senha de conter entre 6 e 16 caracteres</p>";
     }
 
     //Antes de criptografar
 
     if(empty($nome))
     {
-        $erro = "ERRO: O campo Nome é obrigatório!";
+        $erro = "<p class='msg_fail'>ERRO: O campo Nome é obrigatório!</p>";
     }
 
     if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
     {
-        $erro = "ERRO: O campo E-mail é obrigatório!";
+        $erro = "<p class='msg_fail'>ERRO: O campo E-mail é obrigatório!</p>";
     }
 
     if(!empty($data_nascimento))
@@ -55,15 +55,16 @@ if(count($_POST)> 0)
         }
         else
         {
-            $erro = "O campo Data de Nascimento deve seguir o padrão DD/MM/YYYY !";
+            $erro = "<p class='msg_fail'>O campo Data de Nascimento deve seguir o padrão DD/MM/YYYY !</p>";
         }
     }
 
     if(!empty($telefone))
     {
         $telefone = limpar_texto($telefone);
-        if(strlen($telefone) != 11){
-            $erro = "O campo telefone deve conter 11 dígitos!";
+        if(strlen($telefone) != 11)
+        {
+            $erro = "<p class='msg_fail'>O campo telefone deve conter 11 dígitos!</p>";
         }
     }
 
@@ -78,7 +79,7 @@ if(count($_POST)> 0)
             $arq['tmp_name']);
 
         if($path == false)
-            $erro = "Falha ao enviar arquivo";
+            $erro = "<p class='msg_fail'>Falha ao enviar arquivo</p>";
     }
 
     if($erro)
@@ -111,7 +112,7 @@ if(count($_POST)> 0)
         $sucesso = $mysqli->query($sql_code) or die($mysqli->error);
         if($sucesso)
         {
-            echo "<p><b>Cliente cadastrado com sucesso!</b></p>";
+            echo "<p class='msg_sucess'><b>Cliente cadastrado com sucesso!</b></p>";
             unset($_POST);
         }
     }
@@ -124,42 +125,57 @@ if(count($_POST)> 0)
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Clientes</title>
+    <link rel="stylesheet" href="estilos/cadastro.css">
 </head>
 <body>
-    <a href="clientes.php">Voltar para a lista</a>
-    <form enctype="multipart/form-data" method="POST" action="">
-        <p>
-            <label for="">Nome:</label>
-            <input value="<?php if(isset($_POST['nome'])) echo $_POST['nome'];?>" name="nome" type="text"><br></p>
-        <p>
-            <label for="">E-mail:</label>
-            <input value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>" name="email" type="text"><br>
-        </p>
-        <p>
-            <label for="">Telefone:</label>
-            <input value="<?php if(isset($_POST['telefone'])) echo $_POST['telefone'];?>" placeholder="(11) 91111-1111" name="telefone" type="text"><br>
-        </p>
-        <p>
-            <label for="">Data de Nascimento:</label>
-            <input value="<?php if(isset($_POST['data_nascimento'])) echo $_POST['data_nascimento'];?>" name="data_nascimento" type="text"><br>
-        </p>
-        <p>
-            <label for="">Senha:</label>
-            <input value="<?php if(isset($_POST['senha'])) echo $_POST['senha'];?>" name="senha" type="password"><br>
-        </p>
-        <p>
-            <label for="">Imagem de perfil:</label>
-            <input name="foto" type="file"><br>
-        </p>
-        <p>
-            <label for="">Tipo:</label>
+    <header class="cabecalho">
+        <div class="caixa"> 
+            <nav>
+                <ul>
+                    <li><a href="clientes.php">Tabela de clientes</a></li>
+                    <li><a href="index.php">Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <form enctype="multipart/form-data" method="POST" action="">
+            <p class="formulario">
+                <label for="">Nome:</label>
+                <input value="<?php if(isset($_POST['nome'])) echo $_POST['nome'];?>" name="nome" type="text">   
+            </p>
+            <p class="formulario">
+                <label for="">E-mail:</label>
+                <input value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>" name="email" type="text">
+            </p>
+            <p class="formulario">
+                <label for="">Telefone:</label>
+                <input value="<?php if(isset($_POST['telefone'])) echo $_POST['telefone'];?>" placeholder="(11) 91111-1111" name="telefone" type="text">
+            </p>
+            <p class="formulario">
+                <label for="">Data de Nascimento:</label>
+                <input value="<?php if(isset($_POST['data_nascimento'])) echo $_POST['data_nascimento'];?>" name="data_nascimento" type="text">
+            </p>
+            <p class="formulario">
+                <label for="">Senha:</label>
+                <input value="<?php if(isset($_POST['senha'])) echo $_POST['senha'];?>" name="senha" type="password">
+            </p>
+            <p>
+            <label for="">Tipo de conta:</label>    
             <input name="admin" value="1" type="radio">ADMIN
-            <input name="admin" value="0" checked type="radio">CLIENTE
-        </p>
-        <p>
-            <button type="submit">Concluir Cadastro</button>
-        </p>
-    </form>
-    <p><a href="clientes.php">Clique aqui</a> para ir para a lista de clientes</p>
+            <input name="admin" value="0" checked type="radio">CLIENTE 
+            </p>
+            <div class="arquivo">
+                <label class="foto" for="arquivo">UPLOAD</label>
+                <input name="foto" type="file" id="arquivo">  
+            </div>
+            <div class="local-botao">
+                <button type="submit" class="botao">SALVAR</button>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <p></p>
+    </footer>
 </body>
 </html>
