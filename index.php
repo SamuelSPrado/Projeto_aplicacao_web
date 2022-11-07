@@ -2,7 +2,6 @@
 
 if(isset($_POST['email']) && isset($_POST['senha']))
 {
-
     include('lib/conexao.php');
 
     $email = $mysqli->escape_string($_POST['email']);
@@ -13,14 +12,14 @@ if(isset($_POST['email']) && isset($_POST['senha']))
 
     if($sql_query->num_rows == 0)
     {
-        echo "E-mail inválido!";
+        echo "<p class='erro'>E-mail inválido!</p>";
     } 
     else 
     {
         $usuario = $sql_query->fetch_assoc();
         if(!password_verify($senha, $usuario['senha']))
         {
-            echo "Senha incorreta!";
+            echo "<p class='erro'>Senha incorreta!</p>";
         }
         else
         {
@@ -33,7 +32,6 @@ if(isset($_POST['email']) && isset($_POST['senha']))
         }
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -42,19 +40,25 @@ if(isset($_POST['email']) && isset($_POST['senha']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrar</title>
+    <link rel="stylesheet" href="estilos/index.css">
 </head>
 <body>
-    <h1>Entrar</h1>
-    <form action="" method="POST">
-        <p>
-            <label for="">E-mail</label>
-            <input type="text" name="email">
-        </p>
-        <p>
-            <label for="">Senha</label>
-            <input type="password" name="senha">
-        </p>
-        <button type="submit">Entrar</button>
-    </form>
+    <header>
+        <h1>Sistema gerenciador de clientes</h1>
+    </header>
+    <main>
+        <h1>Login</h1>
+        <form action="" method="POST">
+                <div class="campo">
+                    <label for=""></label>
+                    <input type="text" name="email" placeholder="E-mail">
+                </div>
+                <div class="campo">
+                    <label for=""></label>
+                    <input type="password" name="senha" placeholder="Senha">
+                </div>
+                <button class="botao" type="submit">Entrar</button>
+        </form>
+    </main>
 </body>
 </html>

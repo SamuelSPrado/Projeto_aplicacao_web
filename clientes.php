@@ -33,8 +33,8 @@
             <th>ADMIN</th>
             <th>Imagem</th>
             <th>Nome</th>
-            <th>Telefone</th>
             <th>E-mail</th>
+            <th>Telefone</th>
             <th>Nascimento</th>
             <th>Data do cadastro</th>
         <?php if($_SESSION['admin']) { ?>
