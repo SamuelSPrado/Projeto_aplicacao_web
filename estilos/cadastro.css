@@ -4,30 +4,23 @@
 }
 
 body{
-    background-image: url(../imagens/pattern_texture_textured-257694.jpg);
+    background-image: url(../imagens/fundo_cadastro.jpg);
 }
 
 .cabecalho{
-    padding: 30px;
-    background-image: url(../imagens/pattern_texture_textured-257694.jpg);
+    padding: 10px 20px;
+    background-image: url(../imagens/fundo_cadastro.jpg);
 }
 
 .caixa {
-    position: relative;
-    width: 940px;
+    width: auto;
     margin: 0 auto;
-}
-
-nav{
-    position: left;
-    top: -25px;
-    right: 0;
 }
 
 nav li{
     display: inline;
     margin: 0 0 0 15px;
-    padding: 120px;
+    padding: 50px;
 }
 
 nav a{
@@ -45,14 +38,20 @@ nav a:hover {
     text-decoration: underline;
 }
 
+.titulo{
+    color: white;
+    margin: 20px 20px 20px 10px;
+    text-align: center;
+}
+
 main{
     font-size: 20px;
 }
 
 main form{
     width: 420px;
-    margin: 30px 0px auto;
-    padding-left: 580px;
+    margin: 10px 0px auto;
+    padding-left: 39%;
 }
 
 main form p{
@@ -67,7 +66,7 @@ main form p{
 
 .formulario input{
     background: transparent;
-    color: black;
+    color: aqua;
     text-align: none;
     font-size: 22px;
     display: block;
@@ -77,14 +76,13 @@ main form p{
     border-radius: 10px;
     border: 1px solid black;
     padding: 10px 0px;
-    border-color: white;
+    border-color: gray;
 }
 
 .formulario input:hover{
-    border-color: black;
+    border-color: aqua;
     border-radius: 15px;
     height: 25px;
-    background-color: white;
 }
 
 .arquivo{

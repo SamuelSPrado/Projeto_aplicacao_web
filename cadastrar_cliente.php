@@ -129,14 +129,15 @@ if(count($_POST)> 0)
 </head>
 <body>
     <header class="cabecalho">
-        <div class="caixa"> 
+        <div class="caixa">
             <nav>
                 <ul>
-                    <li><a href="clientes.php">Tabela de clientes</a></li>
-                    <li><a href="index.php">Sair</a></li>
+                    <li class="tb_cliente"><a href="clientes.php">Tabela de clientes</a></li>
+                    <li class="sair"><a href="index.php">Sair</a></li>
                 </ul>
             </nav>
         </div>
+        <h1 class="titulo">Cadastro de clientes</h1>
     </header>
     <main>
         <form enctype="multipart/form-data" method="POST" action="">
@@ -150,7 +151,7 @@ if(count($_POST)> 0)
             </p>
             <p class="formulario">
                 <label for="">Telefone:</label>
-                <input value="<?php if(isset($_POST['telefone'])) echo $_POST['telefone'];?>" placeholder="(11) 91111-1111" name="telefone" type="text">
+                <input value="<?php if(isset($_POST['telefone'])) echo $_POST['telefone'];?>" placeholder="                  (11) 91111-1111" name="telefone" type="text">
             </p>
             <p class="formulario">
                 <label for="">Data de Nascimento:</label>
