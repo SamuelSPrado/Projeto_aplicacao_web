@@ -67,7 +67,7 @@ main form p{
 .formulario input{
     background: transparent;
     color: aqua;
-    text-align: none;
+    text-align:none;
     font-size: 22px;
     display: block;
     height: 23px;

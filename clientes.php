@@ -21,14 +21,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Clientes</title>
+    <!--<link rel="stylesheet" href="estilos/cliente.css">--->
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/records.css">
+    <!--Javascript-->
+    <script src="./js/main.js" defer></script>
+
+    <title>Cadastro de clientes</title>
 </head>
+
 <body>
-    <h1>Lista de Clientes /</h1>
+    <h1 class="header-title">Lista de Clientes</h1>
         <?php if($_SESSION['admin']) { ?>
-            <a href="cadastrar_cliente.php">Cadastrar Clientes</a> 
+
+            <button type="button" class="button blue mobile" id="cadastrarCliente"><a href="cadastrar_cliente.php">Cadastrar Clientes</a></button>
+
         <?php } ?>
-    <table border="1" cellpadding="10"> 
-        <thead>
+    <table class="records" border="1" cellpadding="10"> 
+        <thead class="thead">
             <th>ID do cliente</th>
             <th>ADMIN</th>
             <th>Imagem</th>
@@ -72,8 +86,8 @@
                         <td><?php echo $dataCadastro;?></td>
                     <?php if($_SESSION['admin']) { ?>
                         <td>
-                            <a href="editar_cliente.php?id=<?php echo $cliente['id']?>">Editar</a>
-                            <a href="deletar_cliente.php?id=<?php echo $cliente['id']?>">Deletar</a>
+                        <button type="button" class="button green"><a href="editar_cliente.php?id=<?php echo $cliente['id']?>">Editar</a></button>
+                        <button type="button" class="button red"><a href="deletar_cliente.php?id=<?php echo $cliente['id']?>">Deletar</a></button>
                         </td>
                     <?php } ?>
                     </tr>
@@ -83,6 +97,35 @@
             ?>
         </tbody>
     </table>
-    <p><a href="logout.php">Deslogar</a></p>
+
+        <!--Inserção de Dados do Cliente-->
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h2>Novo Cliente</h2>
+                    <span class="modal-close" id="modalClose">&#10006;</span>
+                </header>
+                <form class="modal-form">
+                    <input type="image" src="./img/avatar.svg" class="modal-field" placeholder="Imagem">
+                    <input type="number" class="modal-field" placeholder="Id">
+                    <input type="email" class="modal-field" placeholder="Admin">
+                    <input type="text" class="modal-field" placeholder="Nome">
+                    <input type="tel" class="modal-field" placeholder="Telefone">
+                    <input type="date" class="modal-field" placeholder="Nascimento">
+                    <input type="date" class="modal-field" placeholder="Data Cadastro">
+                </form>
+                <footer class="modal-footer">
+                    <button class="button green">Salvar</button>
+                    <button class="button blue">Cancelar</button>
+                </footer>
+            </div>
+        </div>
+        <!--Inserção de Dados do Cliente-->
+
+        <button type="button" class="button red"><a href="logout.php">Deslogar</a></button>
+
+    <footer>
+        Copyright &copy; Janielle | Samuel | Viviane - ano 2022
+    </footer>
 </body>
 </html>

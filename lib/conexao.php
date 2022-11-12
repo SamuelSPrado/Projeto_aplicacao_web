@@ -22,15 +22,13 @@ function formatar_data($data)
     return implode(
         '/', 
         array_reverse(
-            explode(
-                '-', 
-                $data)
+            explode('-', $data)
             )
         );
 }
 
 function formatar_telefone($telefone)
-{       //string, onde começa, tamanho
+{       
         $ddd = substr ( $telefone, 0, 2);
         $parte1 = substr ( $telefone, 2, 5);
         $parte2 = substr ( $telefone, 7);

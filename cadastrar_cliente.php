@@ -88,7 +88,7 @@ if(count($_POST)> 0)
     }
     else
     {
-        $senha = password_hash($senha_primaria, PASSWORD_DEFAULT); //Recebe a senha criptografada.
+        $senha = password_hash($senha_primaria, PASSWORD_DEFAULT);
         
             $sql_code = "INSERT INTO clientes (
                 nome, 
