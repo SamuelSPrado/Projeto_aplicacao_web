@@ -34,7 +34,6 @@ nav a{
 
 nav a:hover {
     color: aqua;
-    font-size: 24px;
     text-decoration: underline;
 }
 
@@ -62,21 +61,20 @@ main form p{
 
 .formulario label{
     font-size: 22px;
+    text-align: center;
 }
 
 .formulario input{
     background: transparent;
     color: aqua;
-    text-align:none;
     font-size: 22px;
     display: block;
     height: 23px;
     width: 380px;
     margin: 10px;
     border-radius: 10px;
-    border: 1px solid black;
+    border-color: black;
     padding: 10px 0px;
-    border-color: gray;
 }
 
 .formulario input:hover{
@@ -162,8 +160,4 @@ ul{
     text-align: center;
     color: red;
     text-decoration: dashed;
-}
-
-footer{
-    padding: 0px;
 }

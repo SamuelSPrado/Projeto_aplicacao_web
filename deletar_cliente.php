@@ -43,12 +43,27 @@ if(isset($_POST['confirmar']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apagar conta</title>
+    <link rel="stylesheet" href="estilos/deletar.css">
 </head>
+
 <body>
-    <h1>Tem certeza que deseja deletar/apagar essa conta?</h1>
+
+    <header>
+        <h1>Ficamos tristes em te ver partindo!</h1>
+        <h2>Tem certeza que deseja deletar/apagar essa conta?</h2>
+    </header>
+
+    <main>
     <form action="" method="post">
-        <a style="margin-right:40px;" href="clientes.php">Não</a>
+        <a href="clientes.php">Não</a>
         <button name="confirmar" value="1" type="submit">Sim</button>
     </form>
+
+    <figure>
+        <img src="imagens/411faf6190b0abaa48ef69b9c9d4993f.gif" alt="choro">
+    </figure>
+        
+    </main>
 </body>
+
 </html>

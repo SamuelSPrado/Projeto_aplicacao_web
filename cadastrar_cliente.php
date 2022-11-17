@@ -178,8 +178,5 @@ if(count($_POST)> 0)
             </div>
         </form>
     </main>
-    <footer>
-        Copyright &copy; Janielle | Samuel | Viviane - ano 2022
-    </footer>
 </body>
 </html>

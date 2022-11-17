@@ -1,77 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
-
-#listaClientes{display: none;}
-#listaClientes{display: none;}
-
-body[page=lista] #listaClientes{display: block;}
-body[page=cadastro] #cadastroClientes{display: block;}
-
-*{
-    margin: auto;
-    padding: 10px;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-tr[page=lista] #listaClientes{display: none;}/
-h1, th, td{
+.titulo{
+    padding-top: 10px;
+    font-size: 30px;
     text-align: center;
-    font-family: 'Poppins';
-    color: #07a; 
+    color: #5881A6;
+    text-shadow: 2px 2px black;
 }
 
-body{
-    background-color: lightseagreen;
+.saida{
+    padding: 20px 20px 20px 20px;
+    font-size: 20px;
 }
-a{
+
+.saida a{
     text-decoration: none;
-    color: #07a;
-}
-.content-table{
-    
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    min-width: 400px;
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    color: #5881A6;
 }
 
-.content-table thead th{
-    background-color: #07458b;
-    color: #ffff;
-    text-align: center;
-    font-weight: bold;
-}
-.content-table tbody th {
-    border-bottom: 1px solid #dddd;
-}
-
-table{
-    width: 100%;
-    border-collapse: collapse;
-}
-table th,
-table td {
-    font-size: 14px;
-    padding: 10px;
-    border: solid 1px #ccc;
-}
-
-button{
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: #07a;
-    color:#fff;
-    margin: 3px;
-}
-button.cinza{
-    background-color: #07a;
-    color: #fff;
-    
-}
-button:hover{
-    opacity: 0.8;
+.saida a:hover{
+    color: aqua;
 }

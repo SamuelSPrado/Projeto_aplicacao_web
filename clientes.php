@@ -21,7 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Clientes</title>
-    <!--<link rel="stylesheet" href="estilos/cliente.css">--->
+    <link rel="stylesheet" href="estilos/cliente.css">
  
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="css/button.css">
@@ -35,10 +35,14 @@
 </head>
 
 <body>
-    <h1 class="header-title">Lista de Clientes</h1>
+    <h1 class="titulo">Lista de Clientes</h1>
         <?php if($_SESSION['admin']) { ?>
 
-            <button type="button" class="button blue mobile" id="cadastrarCliente"><a href="cadastrar_cliente.php">Cadastrar Clientes</a></button>
+            <!------------------>
+            <div class="saida">
+                <a href="cadastrar_cliente.php">Cadastrar Clientes</a>
+            </div>
+            <!------------------>
 
         <?php } ?>
     <table class="records" border="1" cellpadding="10"> 
@@ -121,8 +125,10 @@
             </div>
         </div>
         <!--Inserção de Dados do Cliente-->
-
-        <button type="button" class="button red"><a href="logout.php">Deslogar</a></button>
+        <div class="saida">
+            <a href="logout.php">Deslogar</a>
+        </div>
+        
 
     <footer>
         Copyright &copy; Janielle | Samuel | Viviane - ano 2022
