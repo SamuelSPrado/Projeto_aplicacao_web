@@ -161,22 +161,25 @@ if(count($_POST)> 0)
                 <label for="">Senha:</label>
                 <input value="<?php if(isset($_POST['senha'])) echo $_POST['senha'];?>" name="senha" type="password">
             </p>
+            
             <p>
             <label for="">Tipo de conta:</label>    
             <input name="admin" value="1" type="radio">ADMIN
             <input name="admin" value="0" checked type="radio">CLIENTE 
             </p>
+
             <div class="arquivo">
                 <label class="foto" for="arquivo">UPLOAD</label>
                 <input name="foto" type="file" id="arquivo">  
             </div>
+
             <div class="local-botao">
                 <button type="submit" class="botao">SALVAR</button>
             </div>
         </form>
     </main>
     <footer>
-        <p></p>
+        Copyright &copy; Janielle | Samuel | Viviane - ano 2022
     </footer>
 </body>
 </html>

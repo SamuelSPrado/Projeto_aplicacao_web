@@ -4,12 +4,12 @@
 }
 
 body{
-    background-image: url(../imagens/fundo_cadastro.jpg);
+    background-image: url(../imagens/fundo1.jpg);
 }
 
 .cabecalho{
     padding: 10px 20px;
-    background-image: url(../imagens/fundo_cadastro.jpg);
+    background-image: url(../imagens/fundo1.jpg);
 }
 
 .caixa {

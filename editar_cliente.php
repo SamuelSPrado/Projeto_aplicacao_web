@@ -109,50 +109,68 @@ $cliente = $query_cliente->fetch_assoc();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Clientes</title>
+    <link rel="stylesheet" href="estilos/edicao.css">
 </head>
 <body>
-    <a href="clientes.php">Voltar para a lista de clientes</a><br>
+<header class="cabecalho">
+        <div class="caixa">
+            <nav>
+                <a href="index.php">Voltar para tabela de clientes</a>
+            </nav>
+        </div>
+        <h1 class="titulo">Editar cadastro</h1>
+
+    </header>
+
     <form method="POST" enctype="multipart/form-data" action="">
-        <p>
+        <p class="formulario">
             <label for="">Nome:</label>
             <input value="<?php echo $cliente['nome'];?>" name="nome" type="text"><br>
         </p>
-        <p>
+        <p class="formulario">
             <label for="">E-mail:</label>
             <input value="<?php echo $cliente['email'];?>" name="email" type="text"><br>
         </p>
-        <p>
+        <p class="formulario">
             <label for="">Senha:</label>
             <input value="" name="senha" type="text"><br>
         </p>
-        <p>
+        <p class="formulario">
             <label for="">Telefone:</label>
             <input value="<?php if(!empty($cliente['telefone']))echo formatar_telefone($cliente['telefone']);?>" placeholder="(11) 91111-1111" name="telefone" type="text"><br>
         </p>
-        <p>
+        <p class="formulario">
             <label for="">Data de Nascimento:</label>
             <input value="<?php if(!empty($cliente['data_nascimento']))echo formatar_data($cliente['data_nascimento']);?>" name="data_nascimento" type="text"><br>
         </p>
         
         <input name="foto_antiga" valur="<?php echo $cliente['foto']; ?>" type="hidden">
+
         <?php if($cliente['foto']) { ?>
-        <p>
+        <p class="formulario">
             <label for="">Imagem atual:</label><br>
             <img height="100" src="<?php echo $cliente['foto']; ?>" alt="">
         </p>
+
         <?php } ?>
-        <p>
-            <label for="">Nova imagem de perfil:</label>
+        <p class="arquivo">
+            <label for="">Trocar foto</label>
             <input name="foto" type="file"><br>
         </p>
-        <p>
+
+        <p id="tipo">
             <label for="">Tipo de conta:</label>
             <input name="admin" value="1" type="radio">ADMIN
             <input name="admin" value="0" checked type="radio">CLIENTE
         </p>
-        <p>
-            <button type="submit">Salvar Alterações</button>
-        </p>
+
+        <div class="local-botao">
+            <button class="botao" type="submit">Salvar</button>
+        </div>
+
     </form>
+    <footer>
+        Copyright &copy; Janielle | Samuel | Viviane - ano 2022
+    </footer>
 </body>
 </html>
